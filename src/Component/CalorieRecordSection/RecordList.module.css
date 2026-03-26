@@ -1,0 +1,24 @@
+.list {
+  list-style: none;
+  padding: 0;
+  border: 1px solid var(--theme-color-light);
+  border-radius: 15px;
+}
+
+.listItem {
+  border-bottom: 1px solid var(--theme-color-dark);
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.empty {
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  border: 2px solid var(--theme-color-light);
+  padding: 30px;
+  border-radius: 15px;
+}
