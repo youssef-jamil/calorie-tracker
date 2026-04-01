@@ -58,6 +58,13 @@
   border: 1px solid var(--theme-background-normal);
   color: var(--theme-color-normal);
 }
+
+.footer button:disabled {
+  background-color: var(--theme-background-light);
+  color: var(--theme-color-light);
+  cursor: not-allowed;
+}
+
 @media (min-width: 768px) {
   .form {
     grid-template-rows: repeat(2, auto) minmax(40px, auto);

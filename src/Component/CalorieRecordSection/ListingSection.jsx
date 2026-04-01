@@ -1,26 +1,21 @@
 import RecordList from "./RecoridList";
 import styles from "./ListingSection.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import getDateFromString from "../../utils";
 
 function ListingSection({ allRecords }) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [user, setUser] = useState({});
 
   const dateChangeHandler = (event) => {
     const selectedDate = getDateFromString(event.target.value);
     setCurrentDate(selectedDate);
-    console.log({ currentDate });
   };
 
-  const filteredRecords = allRecords.filter((record) => {
-    const recordDate = new Date(record.date);
-
-    return (
-      recordDate.getDate() === currentDate.getDate() &&
-      recordDate.getMonth() === currentDate.getMonth() &&
-      recordDate.getFullYear() === currentDate.getFullYear()
-    );
-  });
+  const dateFilter = (record) =>
+    record.date.getDate() === currentDate.getDate() &&
+    record.date.getMonth() === currentDate.getMonth() &&
+    record.date.getFullYear() === currentDate.getFullYear();
 
   return (
     <>
@@ -36,7 +31,7 @@ function ListingSection({ allRecords }) {
         onChange={dateChangeHandler}
       />
 
-      <RecordList records={filteredRecords} />
+      <RecordList records={allRecords.filter(dateFilter)} />
     </>
   );
 }
