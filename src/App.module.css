@@ -7,27 +7,27 @@
 }
 
 .open-modal-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  background-color: #534ab7;
-  color: #eeedfe;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
   border: none;
-  border-radius: 14px;
+  border-radius: var(--radius-xl);
   padding: 14px 32px;
-  font-size: 15px;
+  font-size: var(--font-md);
   font-weight: 500;
   cursor: pointer;
   letter-spacing: 0.01em;
   margin: 24px auto;
-  display: flex;
   transition:
     background 0.15s,
     transform 0.1s;
 }
 
 .open-modal-btn:hover {
-  background-color: #3c3489;
+  background-color: var(--btn-primary-hover);
 }
 .open-modal-btn:active {
   transform: scale(0.97);

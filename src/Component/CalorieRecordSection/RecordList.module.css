@@ -1,21 +1,21 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--theme-color-light);
-  border-radius: 14px;
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
 .th {
-  font-size: 11px;
+  font-size: var(--font-xs);
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #999;
+  color: var(--date-year-color);
   padding: 10px 16px;
   text-align: left;
-  border-bottom: 1.5px solid var(--theme-color-light);
-  background-color: #faf8ff;
+  border-bottom: var(--border-light);
+  background-color: var(--badge-bg);
 }
 
 .th-center {
@@ -23,13 +23,13 @@
 }
 
 .total-row {
-  background-color: #faf8ff;
-  border-top: 1.5px solid var(--theme-color-light);
+  background-color: var(--badge-bg);
+  border-top: var(--border-light);
 }
 .total-label {
-  font-size: 12px;
+  font-size: var(--font-sm);
   font-weight: 500;
-  color: #999;
+  color: var(--date-year-color);
   text-align: right;
   padding: 10px 16px;
 }
@@ -46,16 +46,16 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--theme-color-dark);
-  background: #ede9fe;
-  border: 1px solid var(--theme-color-light);
-  border-radius: 6px;
+  background: var(--meal-dinner-bg);
+  border: var(--badge-border);
+  border-radius: var(--radius-sm);
   padding: 4px 12px;
   justify-content: center;
 }
 
 .kcal-label {
   font-size: 10px;
-  color: #aaa;
+  color: var(--kcal-label-color);
   margin-left: 2px;
 }
 
@@ -63,8 +63,8 @@
   font-size: 1.4rem;
   font-weight: 500;
   text-align: center;
-  border: 1px solid var(--theme-color-light);
+  border: var(--border-light);
   padding: 30px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   color: var(--theme-color-normal);
 }

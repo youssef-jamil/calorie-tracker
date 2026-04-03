@@ -1,10 +1,8 @@
-/* Form styles */
-
 .form {
   background-color: var(--theme-background-ultraLight);
   padding: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--theme-background-normal);
+  border-radius: var(--radius-md);
+  border: var(--border-normal);
   display: grid;
 }
 
@@ -20,13 +18,13 @@
 .form select {
   background-color: var(--theme-background-light);
   color: var(--theme-color-normal);
-  border: 1px solid var(--theme-color-normal);
+  border: var(--border-normal);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var(--radius-md);
   width: 100%;
   min-width: 255px;
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: var(--font-base);
   display: block;
   box-sizing: border-box;
 }
@@ -40,31 +38,28 @@
 .footer {
   display: flex;
   justify-content: space-evenly;
-  gap: 12px;
-  margin-top: 10px;
 }
 
 .footer button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background-color: #534ab7;
-  color: #eeedfe;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 12px 28px;
-  font-size: 14px;
+  font-size: var(--font-md);
   font-weight: 500;
   cursor: pointer;
+  width: 160px;
   transition:
     background 0.15s,
     transform 0.1s;
-  width: 160px;
 }
 
 .footer button:hover {
-  background-color: #3c3489;
+  background-color: var(--btn-primary-hover);
 }
 .footer button:active {
   transform: scale(0.97);
@@ -72,20 +67,24 @@
 
 .footer button.secondary {
   background-color: transparent;
-  border: 1px solid #cecbf6;
-  color: #534ab7;
+  border: var(--badge-border);
+  color: var(--btn-primary-bg);
 }
 
 .footer button.secondary:hover {
-  background-color: #eeedfe;
+  background-color: var(--btn-disabled-bg);
 }
 
 .footer button:disabled {
-  background-color: #eeedfe;
-  color: #afa9ec;
-  border: 1px solid #cecbf6;
+  background-color: var(--btn-disabled-bg);
+  color: var(--btn-disabled-text);
+  border: var(--badge-border);
   cursor: not-allowed;
   transform: none;
+}
+
+.footer button:disabled:hover {
+  background-color: var(--btn-disabled-bg);
 }
 
 @media (min-width: 768px) {
@@ -94,9 +93,8 @@
     grid-template-columns: auto 1fr auto 1fr;
     column-gap: 1rem;
   }
-
   .footer {
-    grid-column: 1 /-1;
+    grid-column: 1 / -1;
     justify-self: center;
     width: 100%;
   }

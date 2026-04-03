@@ -1,12 +1,12 @@
 .row {
-  border-bottom: 0.5px solid var(--theme-color-light);
+  border-bottom: var(--border-light);
   transition: background 0.15s;
 }
 .row:last-child {
   border-bottom: none;
 }
 .row:hover {
-  background-color: #f7f3ff;
+  background-color: var(--badge-bg);
 }
 
 .date-cell {
@@ -22,9 +22,9 @@
   justify-content: center;
   width: 42px;
   height: 46px;
-  border-radius: 8px;
-  background-color: #f5f0ff;
-  border: 1px solid var(--theme-color-light);
+  border-radius: var(--radius-md);
+  background-color: var(--badge-bg);
+  border: var(--badge-border);
 }
 
 .month {
@@ -32,17 +32,17 @@
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: darkred;
+  color: var(--date-month-color);
 }
 .day {
-  font-size: 18px;
+  font-size: var(--font-lg);
   font-weight: 300;
   color: var(--theme-color-dark);
   line-height: 1.1;
 }
 .year {
   font-size: 9px;
-  color: #999;
+  color: var(--date-year-color);
 }
 
 .center-cell {
@@ -54,25 +54,26 @@
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-sm);
   font-weight: 500;
 }
+
 .meal-breakfast {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--meal-breakfast-bg);
+  color: var(--meal-breakfast-text);
 }
 .meal-lunch {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--meal-lunch-bg);
+  color: var(--meal-lunch-text);
 }
 .meal-dinner {
-  background: #ede9fe;
-  color: #5b21b6;
+  background: var(--meal-dinner-bg);
+  color: var(--meal-dinner-text);
 }
 .meal-snack {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--meal-snack-bg);
+  color: var(--meal-snack-text);
 }
 
 .cal-badge {
@@ -80,22 +81,23 @@
   align-items: baseline;
   gap: 2px;
   font-family: monospace;
-  font-size: 14px;
+  font-size: var(--font-md);
   font-weight: 500;
   color: var(--theme-color-dark);
-  background: #f5f0ff;
-  border: 1px solid var(--theme-color-light);
-  border-radius: 6px;
+  background: var(--badge-bg);
+  border: var(--badge-border);
+  border-radius: var(--radius-sm);
   padding: 4px 10px;
   min-width: 60px;
   justify-content: center;
 }
+
 .kcal-label {
   font-size: 10px;
-  color: #aaa;
+  color: var(--kcal-label-color);
   margin-left: 2px;
 }
 .invalid {
-  font-size: 13px;
+  font-size: var(--font-sm);
   color: darkred;
 }

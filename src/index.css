@@ -2,12 +2,63 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  /* ── Background scale ── */
   --theme-background-ultraLight: #effaff;
   --theme-background-normal: #a0d2eb;
   --theme-background-light: #e5eaf5;
+
+  /* ── Brand purple scale ── */
   --theme-color-light: #d0bdf4;
   --theme-color-normal: #8458b3;
   --theme-color-dark: #494d5f;
+
+  /* ── Button purple (replaces hardcoded #534AB7 everywhere) ── */
+  --btn-primary-bg: #534ab7;
+  --btn-primary-hover: #3c3489;
+  --btn-primary-text: #eeedfe;
+  --btn-primary-disabled-bg: #eeedfe;
+  --btn-primary-disabled-text: #afa9ec;
+  --btn-primary-disabled-border: #cecbf6;
+
+  /* ── Record badge background (replaces hardcoded #f5f0ff) ── */
+  --badge-bg: #f5f0ff;
+  --badge-border: 1px solid var(--theme-color-light);
+  --badge-radius: 6px;
+
+  /* ── Date badge ── */
+  --date-badge-bg: #f5f0ff;
+  --date-badge-radius: 8px;
+  --date-month-color: darkred;
+  --date-year-color: #999;
+
+  /* ── Meal pill colors ── */
+  --meal-breakfast-bg: #dbeafe;
+  --meal-breakfast-text: #1e40af;
+  --meal-lunch-bg: #dcfce7;
+  --meal-lunch-text: #166534;
+  --meal-dinner-bg: #ede9fe;
+  --meal-dinner-text: #5b21b6;
+  --meal-snack-bg: #fef3c7;
+  --meal-snack-text: #92400e;
+
+  /* ── Border radius scale ── */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-pill: 20px;
+
+  /* ── Border shorthand ── */
+  --border-light: 1px solid var(--theme-color-light);
+  --border-normal: 1px solid var(--theme-color-normal);
+
+  /* ── Font sizes ── */
+  --font-xs: 11px;
+  --font-sm: 12px;
+  --font-md: 14px;
+  --font-base: 16px;
+  --font-lg: 18px;
 }
 
 a {

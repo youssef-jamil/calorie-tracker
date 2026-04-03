@@ -8,12 +8,12 @@
   margin: 20px;
   background-color: var(--theme-background-light);
   color: var(--theme-color-normal);
-  border: 1px solid var(--theme-color-normal);
+  border: var(--border-normal);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var(--radius-md);
   width: 100%;
   max-width: 225px;
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: var(--font-base);
   box-sizing: border-box;
 }
