@@ -1,37 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CalorieRecordEdit from "./Component/Edit/CalorieRecordEdit";
 import ListingSection from "./Component/CalorieRecordSection/ListingSection";
 import Modal from "react-modal";
 import styles from "./App.module.css";
 import getDateFromString from "./utils";
-const INIL_RECORDS = [
-  {
-    id: 1,
-    date: new Date("2024-01-01"),
-    meal: "Breakfast",
-    content: "Oatmeal",
-    calories: 350
-  },
-  {
-    id: 2,
-    date: new Date("2024-01-03"),
-    meal: "Lunch",
-    content: "Chicken",
-    calories: 350
-  },
-  {
-    id: 3,
-    date: new Date("2024-01-02"),
-    meal: "Dinner",
-    content: "cheese",
-    calories: 350
-  }
-];
+
+const LOCAL_STORAGE_KEY = "calorie_records";
 
 function App() {
-  const [records, setRecords] = useState(INIL_RECORDS);
-  const [nextId, setNextId] = useState(4);
+  const [records, setRecords] = useState(() => {
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (!stored) return [];
+
+    return JSON.parse(stored).map((record) => ({
+      ...record,
+      date: getDateFromString(record.date.split("T")[0])
+    }));
+  });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(records));
+  }, [records]);
 
   const modalStyled = {
     content: {
@@ -45,42 +37,32 @@ function App() {
       padding: "0px",
       borderRadius: "20px"
     },
-
     overlay: {
       backgroundColor: "rgba(0,0,0,0.5)"
     }
   };
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const onFormSubmit = (record) => {
     const formatRecord = {
       ...record,
       date: getDateFromString(record.date),
-      id: nextId
+      id: crypto.randomUUID()
     };
 
     setRecords((prev) =>
       [...prev, formatRecord].sort((a, b) => a.date - b.date)
     );
 
-    setNextId((prev) => prev + 1);
-
     handleCloseModal();
-  };
-
-  const handlerOpenModal = () => {
-    handleOpenModal();
   };
 
   return (
     <div className="App">
       <h1 className={styles.title}>The Calories Tracker Project</h1>
+
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
@@ -92,9 +74,25 @@ function App() {
           onFormSubmit={onFormSubmit}
         />
       </Modal>
+
       <ListingSection allRecords={records} />
-      <button className={styles["open-modal-btn"]} onClick={handlerOpenModal}>
-        Track Food
+
+      <button className={styles["open-modal-btn"]} onClick={handleOpenModal}>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+        Track food
       </button>
     </div>
   );

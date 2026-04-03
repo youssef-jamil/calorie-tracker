@@ -7,6 +7,7 @@ A clean and intuitive calorie tracking web application built with **React** and 
 ## 📸 Project Overview
 
 Calorie Tracker allows users to:
+
 - View all meal records filtered by a selected date
 - Add new food entries (date, meal type, content, calories) via a modal form
 - See records sorted chronologically
@@ -16,13 +17,13 @@ Calorie Tracker allows users to:
 
 ## 🚀 Tech Stack
 
-| Technology | Version | Purpose |
-|---|---|---|
-| [React](https://react.dev/) | 18.2.0 | UI component library |
-| [Vite](https://vitejs.dev/) | 4.5.x | Build tool & dev server |
-| [Styled Components](https://styled-components.com/) | 6.3.x | CSS-in-JS styling (installed, available for future use) |
-| [React Modal](https://reactcommunity.org/react-modal/) | 3.16.x | Accessible modal dialog |
-| CSS Modules | — | Scoped component styling |
+| Technology                                             | Version | Purpose                                                 |
+| ------------------------------------------------------ | ------- | ------------------------------------------------------- |
+| [React](https://react.dev/)                            | 18.2.0  | UI component library                                    |
+| [Vite](https://vitejs.dev/)                            | 4.5.x   | Build tool & dev server                                 |
+| [Styled Components](https://styled-components.com/)    | 6.3.x   | CSS-in-JS styling (installed, available for future use) |
+| [React Modal](https://reactcommunity.org/react-modal/) | 3.16.x  | Accessible modal dialog                                 |
+| CSS Modules                                            | —       | Scoped component styling                                |
 
 ---
 
@@ -43,13 +44,13 @@ calorie-tracker/
 │   │   │   ├── CalorieRecordDate.module.css
 │   │   │   ├── ListingSection.jsx         # Date picker + filtered record list
 │   │   │   ├── ListingSection.module.css
-│   │   │   ├── RecoridList.jsx            # Maps records to CalorieRecord items
+│   │   │   ├── RecordList.jsx             # Maps records to CalorieRecord items
 │   │   │   └── RecordList.module.css
 │   │   ├── Comm/
 │   │   │   ├── StyledRecordCell.jsx       # Reusable bordered cell wrapper
 │   │   │   └── StyledRecordCell.module.css
 │   │   └── Edit/
-│   │       ├── CalorieRecordEdit.jsx      # Add new record form (inside modal)
+│   │       └── CalorieRecordEdit.module.css
 │   │       └── CaloriesRecordForm.module.css
 │   ├── App.jsx                            # Root component, state management
 │   ├── App.module.css
@@ -105,7 +106,9 @@ npm run preview
 ## 🧩 Component Breakdown
 
 ### `App.jsx`
+
 The root component. Manages global state including:
+
 - `records` — the list of all calorie entries
 - `nextId` — auto-incremented ID for new records
 - `isModalOpen` — controls modal visibility
@@ -115,27 +118,33 @@ Handles `onFormSubmit` to add and sort new records by date.
 ---
 
 ### `ListingSection.jsx`
+
 Displays a date picker input and filters the full records list to show only entries matching the selected date.
 
 ---
 
 ### `RecordList.jsx`
+
 Renders the filtered list of records. Shows a friendly empty state message if no records match the selected date.
 
 ---
 
 ### `CalorieRecord.jsx`
+
 Displays a single meal row with: **date**, **meal type**, **content**, and **calories**. Handles negative calorie values by showing an "Invalid calories" message.
 
 ---
 
 ### `CalorieRecordDate.jsx`
+
 A styled date cell that displays month, day, and year separately using UTC methods to avoid timezone issues.
 
 ---
 
 ### `CalorieRecordEdit.jsx`
+
 The form used inside the modal to add a new record. Fields include:
+
 - Date (date picker)
 - Meal (dropdown: Breakfast, Lunch, Dinner, Snack)
 - Content (text input)
@@ -144,11 +153,13 @@ The form used inside the modal to add a new record. Fields include:
 ---
 
 ### `StyledRecordCell.jsx`
+
 A shared reusable component that wraps content in a bordered, rounded cell — used for date and calorie display.
 
 ---
 
 ### `utils.js`
+
 Contains a single utility function `getDateFromString(dateString)` that converts a `YYYY-MM-DD` string into a JavaScript `Date` object without timezone offset issues.
 
 ---
@@ -159,11 +170,11 @@ Global CSS variables are defined in `src/index.css` and used across all componen
 
 ```css
 --theme-background-ultraLight: #effaff;
---theme-background-normal:     #a0d2eb;
---theme-background-light:      #e5eaf5;
---theme-color-light:           #d0bdf4;
---theme-color-normal:          #8458b3;  /* Primary purple */
---theme-color-dark:            #494d5f;  /* Dark text */
+--theme-background-normal: #a0d2eb;
+--theme-background-light: #e5eaf5;
+--theme-color-light: #d0bdf4;
+--theme-color-normal: #8458b3; /* Primary purple */
+--theme-color-dark: #494d5f; /* Dark text */
 ```
 
 To change the app's color scheme, simply update these variables in `index.css`.
@@ -188,8 +199,8 @@ This project is actively being developed. Planned features include:
 
 ## 🐛 Known Issues
 
-- The `console.log({ currentDate })` in `ListingSection.jsx` is a development leftover and can be removed.
-- File name typo: `RecoridList.jsx` (should be `RecordList.jsx`) — to be fixed in a future refactor.
+- The `console.log({ currentDate })` statement in `ListingSection.jsx` is a development leftover and should be removed from the code to avoid confusion for contributors.
+- File name typo: `RecordList.jsx` (should be `RecordList.jsx`) — to be fixed in a future refactor.
 
 ---
 
@@ -219,4 +230,4 @@ Built as part of the React Fundamentals course on [Almdrasa](https://almdrasa.co
 
 ---
 
-> *"The journey doesn't stop here — this project will keep growing!"* 🚀
+> _"The journey doesn't stop here — this project will keep growing!"_ 🚀

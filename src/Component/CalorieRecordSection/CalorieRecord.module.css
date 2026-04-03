@@ -1,19 +1,101 @@
-.record {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  padding: 10px 0;
-  width: 70%;
-  height: auto;
-  color: var(--theme-color-normal);
-  background-color: white;
-  margin: auto;
-  max-width: 768px;
+.row {
+  border-bottom: 0.5px solid var(--theme-color-light);
+  transition: background 0.15s;
+}
+.row:last-child {
+  border-bottom: none;
+}
+.row:hover {
+  background-color: #f7f3ff;
 }
 
-.record-calories {
+.date-cell {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 46px;
+  border-radius: 8px;
+  background-color: #f5f0ff;
+  border: 1px solid var(--theme-color-light);
+}
+
+.month {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: darkred;
+}
+.day {
+  font-size: 18px;
+  font-weight: 300;
   color: var(--theme-color-dark);
+  line-height: 1.1;
+}
+.year {
+  font-size: 9px;
+  color: #999;
+}
+
+.center-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.meal-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   font-weight: 500;
+}
+.meal-breakfast {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.meal-lunch {
+  background: #dcfce7;
+  color: #166534;
+}
+.meal-dinner {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+.meal-snack {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.cal-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--theme-color-dark);
+  background: #f5f0ff;
+  border: 1px solid var(--theme-color-light);
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 60px;
+  justify-content: center;
+}
+.kcal-label {
+  font-size: 10px;
+  color: #aaa;
+  margin-left: 2px;
+}
+.invalid {
+  font-size: 13px;
+  color: darkred;
 }

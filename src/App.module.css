@@ -7,15 +7,28 @@
 }
 
 .open-modal-btn {
-  background-color: var(--theme-color-normal);
-  color: var(--theme-background-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #534ab7;
+  color: #eeedfe;
   border: none;
-  display: block;
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 14px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  flex-grow: 1;
-  width: 100%;
-  max-width: 225px;
-  margin: auto;
+  letter-spacing: 0.01em;
+  margin: 24px auto;
+  display: flex;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.open-modal-btn:hover {
+  background-color: #3c3489;
+}
+.open-modal-btn:active {
+  transform: scale(0.97);
 }

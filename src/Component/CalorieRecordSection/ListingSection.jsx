@@ -1,11 +1,13 @@
 import RecordList from "./RecoridList";
 import styles from "./ListingSection.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import getDateFromString from "../../utils";
 
 function ListingSection({ allRecords }) {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [user, setUser] = useState({});
+  const [currentDate, setCurrentDate] = useState(() => {
+    const now = new Date();
+    return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  });
 
   const dateChangeHandler = (event) => {
     const selectedDate = getDateFromString(event.target.value);
@@ -13,9 +15,17 @@ function ListingSection({ allRecords }) {
   };
 
   const dateFilter = (record) =>
-    record.date.getDate() === currentDate.getDate() &&
-    record.date.getMonth() === currentDate.getMonth() &&
-    record.date.getFullYear() === currentDate.getFullYear();
+    record.date.getUTCDate() === currentDate.getUTCDate() &&
+    record.date.getUTCMonth() === currentDate.getUTCMonth() &&
+    record.date.getUTCFullYear() === currentDate.getUTCFullYear();
+
+  const formatDate = (date) => {
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(date.getUTCDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
 
   return (
     <>
@@ -27,7 +37,7 @@ function ListingSection({ allRecords }) {
         id="listingPicker"
         className={styles["listing-picker-input"]}
         type="date"
-        value={currentDate.toISOString().split("T")[0]}
+        value={formatDate(currentDate)}
         onChange={dateChangeHandler}
       />
 
