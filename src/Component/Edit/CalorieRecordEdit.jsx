@@ -1,82 +1,110 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import styles from "./CaloriesRecordForm.module.css";
 
-function CalorieRecordEdit(props) {
-  const DEFAULT_VALUE = {
-    date: "",
-    meal: "",
-    content: "",
-    calories: ""
-  };
+const DEFAULT_VALUE = {
+  date: { value: "", isValid: false },
+  meal: { value: "", isValid: false },
+  content: { value: "", isValid: false },
+  calories: { value: "", isValid: false },
+};
 
-  const [records, setRecords] = useState(DEFAULT_VALUE);
-  const [formValid, setFormValid] = useState(false);
-  const onDateHandler = (e) => {
-    setRecords({
-      ...records,
-      date: e.target.value
-    });
-  };
+const isSport = (content) => content.trim().toLowerCase().includes("sport");
 
-  const onMealHandler = (e) => {
-    setRecords({
-      ...records,
-      meal: e.target.value
-    });
-  };
+function formReducer(state, action) {
+  switch (action.type) {
+    case "SET_FIELD":
+      return {
+        ...state,
+        [action.payload.field]: {
+          value: action.payload.value,
+          isValid: action.payload.isValid,
+        },
+      };
+    case "RESET":
+      return DEFAULT_VALUE;
+    default:
+      return state;
+  }
+}
 
-  const onContentHandler = (e) => {
-    setRecords({
-      ...records,
-      content: e.target.value
-    });
-  };
+function CalorieRecordEdit({ onFormSubmit, onCancel }) {
+  const [formState, dispatch] = useReducer(formReducer, DEFAULT_VALUE);
+
+  const formValid = Object.values(formState).every((field) => field.isValid);
+
+  const setField = (field, value, isValid) =>
+    dispatch({ type: "SET_FIELD", payload: { field, value, isValid } });
+
+  // ─── Cross-validation: content ↔ calories ────────────────────────────────
+  useEffect(() => {
+    const cal = Number(formState.calories.value);
+    const sport = isSport(formState.content.value);
+
+    if (formState.calories.value === "") {
+      setField("calories", "", false);
+    } else if (sport) {
+      // Sport → only negative allowed
+      setField("calories", formState.calories.value, cal < 0);
+    } else if (cal < 0) {
+      // Non-sport + negative → reset
+      setField("calories", "", false);
+    } else {
+      // Non-sport + positive → valid
+      setField("calories", formState.calories.value, cal > 0);
+    }
+  }, [formState.content.value, formState.calories.value]);
+
+  // ─── Handlers ────────────────────────────────────────────────────────────
+  const onDateHandler = (e) =>
+    setField("date", e.target.value, !!e.target.value);
+
+  const onMealHandler = (e) =>
+    setField("meal", e.target.value, !!e.target.value);
+
+  const onContentHandler = (e) =>
+    setField("content", e.target.value, !!e.target.value.trim());
 
   const onCaloriesHandler = (e) => {
-    setRecords({
-      ...records,
-      calories: Number(e.target.value)
-    });
+    const value = e.target.value === "" ? "" : Number(e.target.value);
+    // isValid will be computed by the useEffect above
+    setField("calories", value, false);
   };
+
+  const reset = () => dispatch({ type: "RESET" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onFormSubmit(records);
-    setRecords(DEFAULT_VALUE);
+    const records = Object.fromEntries(
+      Object.entries(formState).map(([key, { value }]) => [key, value]),
+    );
+    onFormSubmit(records);
+    reset();
   };
 
-  const handlerCancel = () => {
-    setRecords(DEFAULT_VALUE);
-    props.onCancel();
+  const handleCancel = () => {
+    reset();
+    onCancel();
   };
 
-  const validateForm = () => {
-    const { date, meal, content, calories } = records;
-    const isValid =
-      date.trim() !== "" &&
-      meal.trim() !== "" &&
-      content.trim() !== "" &&
-      calories !== "" &&
-      calories >= 0;
-    setFormValid(isValid);
-  };
-
-  useEffect(() => {
-    validateForm();
-  }, [records]);
-
+  // ─── Render ──────────────────────────────────────────────────────────────
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="date">Date:</label>
       <input
         type="date"
-        value={records.date}
         id="date"
+        value={formState.date.value}
         onChange={onDateHandler}
+        className={`${styles["form-input"]} ${formState.date.isValid ? "" : styles.error}`}
       />
 
       <label htmlFor="meal">Meal:</label>
-      <select id="meal" value={records.meal} onChange={onMealHandler}>
+      <select
+        id="meal"
+        value={formState.meal.value}
+        onChange={onMealHandler}
+        className={`${styles["form-input"]} ${formState.meal.isValid ? "" : styles.error}`}
+      >
         <option value="">Select meal</option>
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
@@ -88,31 +116,31 @@ function CalorieRecordEdit(props) {
       <input
         type="text"
         id="content"
+        value={formState.content.value}
         onChange={onContentHandler}
-        value={records.content}
+        className={`${styles["form-input"]} ${formState.content.isValid ? "" : styles.error}`}
       />
 
       <label htmlFor="calories">Calories:</label>
       <input
         type="number"
-        min={0}
         id="calories"
-        placeholder="e.g., 350"
-        value={records.calories}
+        placeholder={
+          isSport(formState.content.value) ? "e.g., -350 (sport)" : "e.g., 350"
+        }
+        value={formState.calories.value}
         onChange={onCaloriesHandler}
-        className={`${styles["calories-input"]} ${
-          records.calories < 0 ? styles.error : ""
-        }`}
+        className={`${styles["form-input"]} ${formState.calories.isValid ? "" : styles.error}`}
       />
 
       <footer className={styles.footer}>
-        <button disabled={!formValid} type="submit">
+        <button type="submit" disabled={!formValid}>
           Add Record
         </button>
         <button
-          className={styles.secondary}
           type="button"
-          onClick={handlerCancel}
+          className={styles.secondary}
+          onClick={handleCancel}
         >
           Cancel
         </button>

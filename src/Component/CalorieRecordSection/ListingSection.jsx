@@ -1,4 +1,4 @@
-import RecordList from "./RecoridList";
+import RecordList from "./RecordList";
 import styles from "./ListingSection.module.css";
 import { useState } from "react";
 import getDateFromString from "../../utils";

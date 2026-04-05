@@ -11,11 +11,13 @@
   margin-right: 30px;
   margin-bottom: 10px;
 }
-
+/* 
 .form input[type="text"],
 .calories-input,
 .form input[type="date"],
-.form select {
+.form select */
+
+.form-input {
   background-color: var(--theme-background-light);
   color: var(--theme-color-normal);
   border: var(--border-normal);
