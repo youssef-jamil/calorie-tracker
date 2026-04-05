@@ -1,15 +1,10 @@
 import CalorieRecord from "./CalorieRecord";
 import styles from "./RecordList.module.css";
 
-function RecordList({ records }) {
+function RecordList({ records, totalCalories }) {
   if (!records || records.length === 0) {
     return <p className={styles.empty}>No records found for this date 📅</p>;
   }
-
-  const total = records.reduce(
-    (sum, r) => sum + (r.calories >= 0 ? r.calories : 0),
-    0
-  );
 
   return (
     <table className={styles.table}>
@@ -39,7 +34,7 @@ function RecordList({ records }) {
           </td>
           <td className={styles["total-value"]}>
             <span className={styles["total-badge"]}>
-              {total}
+              {totalCalories}
               <span className={styles["kcal-label"]}>kcal</span>
             </span>
           </td>

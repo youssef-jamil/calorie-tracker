@@ -53,6 +53,10 @@
   --border-light: 1px solid var(--theme-color-light);
   --border-normal: 1px solid var(--theme-color-normal);
 
+  /*  warning styles */
+  --warning-bg: #fffbeb;
+  --warning-text: #92400e;
+
   /* ── Font sizes ── */
   --font-xs: 11px;
   --font-sm: 12px;

@@ -4,6 +4,7 @@ import ListingSection from "./Component/CalorieRecordSection/ListingSection";
 import Modal from "react-modal";
 import styles from "./App.module.css";
 import getDateFromString from "./utils";
+import AppContext from "../app-context";
 
 const LOCAL_STORAGE_KEY = "calorie_records";
 
@@ -15,9 +16,18 @@ function App() {
 
     return JSON.parse(stored).map((record) => ({
       ...record,
-      date: getDateFromString(record.date.split("T")[0])
+      date: getDateFromString(record.date.split("T")[0]),
     }));
   });
+
+  const [currentDate, setCurrentDate] = useState(() => {
+    const now = new Date();
+    return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  });
+
+  const total = records
+    .filter((r) => r.date.getTime() === currentDate.getTime())
+    .reduce((sum, r) => sum + r.calories, 0);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -35,11 +45,11 @@ function App() {
       transform: "translate(-50% , -50%)",
       border: "none",
       padding: "0px",
-      borderRadius: "20px"
+      borderRadius: "20px",
     },
     overlay: {
-      backgroundColor: "rgba(0,0,0,0.5)"
-    }
+      backgroundColor: "rgba(0,0,0,0.5)",
+    },
   };
 
   const handleOpenModal = () => setIsModalOpen(true);
@@ -49,11 +59,11 @@ function App() {
     const formatRecord = {
       ...record,
       date: getDateFromString(record.date),
-      id: crypto.randomUUID()
+      id: crypto.randomUUID(),
     };
 
     setRecords((prev) =>
-      [...prev, formatRecord].sort((a, b) => a.date - b.date)
+      [...prev, formatRecord].sort((a, b) => a.date - b.date),
     );
 
     handleCloseModal();
@@ -62,7 +72,6 @@ function App() {
   return (
     <div className="App">
       <h1 className={styles.title}>The Calories Tracker Project</h1>
-
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
@@ -72,10 +81,18 @@ function App() {
         <CalorieRecordEdit
           onCancel={handleCloseModal}
           onFormSubmit={onFormSubmit}
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+          totalCalories={total}
         />
       </Modal>
 
-      <ListingSection allRecords={records} />
+      <ListingSection
+        allRecords={records}
+        currentDate={currentDate}
+        setCurrentDate={setCurrentDate}
+        totalCalories={total}
+      />
 
       <button className={styles["open-modal-btn"]} onClick={handleOpenModal}>
         <svg

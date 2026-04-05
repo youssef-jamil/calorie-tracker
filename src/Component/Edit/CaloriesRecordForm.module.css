@@ -37,6 +37,25 @@
   border: 2px solid maroon;
 }
 
+.warning {
+  display: block;
+  grid-column: 1 / -1;
+  width: 100%;
+  background-color: var(--theme-color-light);
+  color: var(--warning-text);
+  border: var(--border-normal);
+  font-size: var(--radius-pill);
+  padding: 5px;
+  border-radius: var(--radius-pill);
+  text-align: center;
+  font-weight: 500;
+
+  .number {
+    font-weight: 700;
+    color: var(--theme-color-dark);
+  }
+}
+
 .footer {
   display: flex;
   justify-content: space-evenly;

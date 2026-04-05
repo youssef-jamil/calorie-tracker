@@ -3,12 +3,12 @@ import styles from "./ListingSection.module.css";
 import { useState } from "react";
 import getDateFromString from "../../utils";
 
-function ListingSection({ allRecords }) {
-  const [currentDate, setCurrentDate] = useState(() => {
-    const now = new Date();
-    return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
-  });
-
+function ListingSection({
+  allRecords,
+  currentDate,
+  setCurrentDate,
+  totalCalories,
+}) {
   const dateChangeHandler = (event) => {
     const selectedDate = getDateFromString(event.target.value);
     setCurrentDate(selectedDate);
@@ -41,7 +41,10 @@ function ListingSection({ allRecords }) {
         onChange={dateChangeHandler}
       />
 
-      <RecordList records={allRecords.filter(dateFilter)} />
+      <RecordList
+        records={allRecords.filter(dateFilter)}
+        totalCalories={totalCalories}
+      />
     </>
   );
 }
