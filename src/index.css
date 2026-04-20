@@ -13,7 +13,7 @@
   --theme-color-normal: #8458b3;
   --theme-color-dark: #494d5f;
 
-  /* ── Button purple (replaces hardcoded #534AB7 everywhere) ── */
+  /* ── Button purple ── */
   --btn-primary-bg: #534ab7;
   --btn-primary-hover: #3c3489;
   --btn-primary-text: #eeedfe;
@@ -21,7 +21,17 @@
   --btn-primary-disabled-text: #afa9ec;
   --btn-primary-disabled-border: #cecbf6;
 
-  /* ── Record badge background (replaces hardcoded #f5f0ff) ── */
+  /*
+   * FIX #10: CaloriesRecordForm.module.css references --btn-disabled-bg and
+   * --btn-disabled-text but those variables were never defined — only the
+   * --btn-primary-disabled-* variants existed. Disabled button styles were
+   * therefore invisible (fell back to browser defaults).
+   */
+  --btn-disabled-bg: #eeedfe;
+  --btn-disabled-text: #afa9ec;
+  --btn-disabled-border: #cecbf6;
+
+  /* ── Record badge background ── */
   --badge-bg: #f5f0ff;
   --badge-border: 1px solid var(--theme-color-light);
   --badge-radius: 6px;
@@ -53,7 +63,7 @@
   --border-light: 1px solid var(--theme-color-light);
   --border-normal: 1px solid var(--theme-color-normal);
 
-  /*  warning styles */
+  /* ── Warning styles ── */
   --warning-bg: #fffbeb;
   --warning-text: #92400e;
 
@@ -75,6 +85,15 @@ a:hover {
 }
 
 body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
+}
+
+#root {
   max-width: 1024px;
   margin: auto;
   background-color: white;

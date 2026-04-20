@@ -1,6 +1,5 @@
 import RecordList from "./RecordList";
 import styles from "./ListingSection.module.css";
-import { useState } from "react";
 import getDateFromString from "../../utils";
 
 function ListingSection({
@@ -23,7 +22,6 @@ function ListingSection({
     const year = date.getUTCFullYear();
     const month = String(date.getUTCMonth() + 1).padStart(2, "0");
     const day = String(date.getUTCDate()).padStart(2, "0");
-
     return `${year}-${month}-${day}`;
   };
 

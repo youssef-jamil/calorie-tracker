@@ -21,9 +21,7 @@
   cursor: pointer;
   letter-spacing: 0.01em;
   margin: 24px auto;
-  transition:
-    background 0.15s,
-    transform 0.1s;
+  transition: background 0.15s, transform 0.1s;
 }
 
 .open-modal-btn:hover {

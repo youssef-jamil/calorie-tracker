@@ -4,7 +4,7 @@ const MEAL_STYLES = {
   Breakfast: styles["meal-breakfast"],
   Lunch: styles["meal-lunch"],
   Dinner: styles["meal-dinner"],
-  Snack: styles["meal-snack"]
+  Snack: styles["meal-snack"],
 };
 
 const MONTHS = [
@@ -19,14 +19,14 @@ const MONTHS = [
   "Sep",
   "Oct",
   "Nov",
-  "Dec"
+  "Dec",
 ];
 
 function CalorieRecord({ meal, content, calories, date }) {
   const month = MONTHS[date.getUTCMonth()];
   const day = date.getUTCDate();
   const year = date.getUTCFullYear();
-  const isValid = calories >= 0;
+  const isValid = calories;
 
   return (
     <tr className={styles.row}>

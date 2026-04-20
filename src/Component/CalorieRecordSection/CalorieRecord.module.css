@@ -59,22 +59,10 @@
   font-weight: 500;
 }
 
-.meal-breakfast {
-  background: var(--meal-breakfast-bg);
-  color: var(--meal-breakfast-text);
-}
-.meal-lunch {
-  background: var(--meal-lunch-bg);
-  color: var(--meal-lunch-text);
-}
-.meal-dinner {
-  background: var(--meal-dinner-bg);
-  color: var(--meal-dinner-text);
-}
-.meal-snack {
-  background: var(--meal-snack-bg);
-  color: var(--meal-snack-text);
-}
+.meal-breakfast { background: var(--meal-breakfast-bg); color: var(--meal-breakfast-text); }
+.meal-lunch     { background: var(--meal-lunch-bg);     color: var(--meal-lunch-text); }
+.meal-dinner    { background: var(--meal-dinner-bg);    color: var(--meal-dinner-text); }
+.meal-snack     { background: var(--meal-snack-bg);     color: var(--meal-snack-text); }
 
 .cal-badge {
   display: inline-flex;
