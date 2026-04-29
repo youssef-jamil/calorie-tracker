@@ -24,7 +24,8 @@ function RecordList({ records, totalCalories }) {
       </thead>
       <tbody>
         {records.map((record) => (
-          <CalorieRecord key={record.id} {...record} />
+          
+          <CalorieRecord key={record.id} recordId={record.id} {...record} />
         ))}
       </tbody>
       <tfoot>

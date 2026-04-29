@@ -47,7 +47,7 @@ calorie-tracker/
 │   │   │   ├── CalorieRecordDate.module.css
 │   │   │   ├── ListingSection.jsx          # Date picker + filtered record list
 │   │   │   ├── ListingSection.module.css
-│   │   │   ├── RecoridList.jsx             # Table with header and daily total footer
+│   │   │   ├── RecordList.jsx              # Table with header and daily total footer
 │   │   │   └── RecordList.module.css
 │   │   ├── Comm/
 │   │   │   ├── StyledRecordCell.jsx        # Reusable bordered cell wrapper
@@ -126,7 +126,7 @@ Displays a date picker and filters records to show only entries matching the sel
 
 ---
 
-### `RecoridList.jsx`
+### `RecordList.jsx`
 
 Renders filtered records in a `<table>` with a fixed-width `<colgroup>`, a header row, and a `<tfoot>` that sums all valid calories for the day. Shows a friendly empty state when no records match.
 
@@ -169,7 +169,7 @@ A single utility — `getDateFromString(dateString)` — converts a `YYYY-MM-DD`
 export default function getDateFromString(dateString) {
   const tokens = dateString.split("-");
   return new Date(
-    Date.UTC(Number(tokens[0]), Number(tokens[1]) - 1, Number(tokens[2]))
+    Date.UTC(Number(tokens[0]), Number(tokens[1]) - 1, Number(tokens[2])),
   );
 }
 ```

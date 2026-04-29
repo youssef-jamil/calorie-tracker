@@ -1,4 +1,5 @@
 import styles from "./CalorieRecord.module.css";
+import { useNavigate } from "react-router-dom";
 
 const MEAL_STYLES = {
   Breakfast: styles["meal-breakfast"],
@@ -22,14 +23,21 @@ const MONTHS = [
   "Dec",
 ];
 
-function CalorieRecord({ meal, content, calories, date }) {
+function CalorieRecord({ meal, content, calories, date, recordId }) {
   const month = MONTHS[date.getUTCMonth()];
   const day = date.getUTCDate();
   const year = date.getUTCFullYear();
   const isValid = calories;
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Navigate to the detail page with the record ID (you can use a unique identifier for each record)
+    navigate(`/track/${recordId}`);
+  };
+
   return (
-    <tr className={styles.row}>
+    <tr className={styles.row} onClick={handleClick}>
       <td>
         <div className={styles["date-cell"]}>
           <div className={styles["date-badge"]}>
