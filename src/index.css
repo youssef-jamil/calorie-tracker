@@ -5,74 +5,69 @@
 
   /* ── Background scale ── */
   --theme-background-ultraLight: #effaff;
-  --theme-background-normal: #a0d2eb;
-  --theme-background-light: #e5eaf5;
+  --theme-background-normal:     #a0d2eb;
+  --theme-background-light:      #e5eaf5;
 
-  /* ── Brand purple scale ── */
-  --theme-color-light: #d0bdf4;
+  /* ── Brand purple ── */
+  --theme-color-light:  #d0bdf4;
   --theme-color-normal: #8458b3;
-  --theme-color-dark: #494d5f;
+  --theme-color-dark:   #494d5f;
 
-  /* ── Button purple ── */
-  --btn-primary-bg: #534ab7;
+  /* ── Primary button ── */
+  --btn-primary-bg:    #534ab7;
   --btn-primary-hover: #3c3489;
-  --btn-primary-text: #eeedfe;
-  --btn-primary-disabled-bg: #eeedfe;
-  --btn-primary-disabled-text: #afa9ec;
-  --btn-primary-disabled-border: #cecbf6;
+  --btn-primary-text:  #eeedfe;
 
-  /*
-   * FIX #10: CaloriesRecordForm.module.css references --btn-disabled-bg and
-   * --btn-disabled-text but those variables were never defined — only the
-   * --btn-primary-disabled-* variants existed. Disabled button styles were
-   * therefore invisible (fell back to browser defaults).
-   */
-  --btn-disabled-bg: #eeedfe;
-  --btn-disabled-text: #afa9ec;
-  --btn-disabled-border: #cecbf6;
+  /* FIX: defined properly so disabled button styles actually apply */
+  --btn-disabled-bg:              #eeedfe;
+  --btn-disabled-text:            #afa9ec;
+  --btn-disabled-border:          #cecbf6;
+  --btn-primary-disabled-bg:      #eeedfe;
+  --btn-primary-disabled-text:    #afa9ec;
+  --btn-primary-disabled-border:  #cecbf6;
 
-  /* ── Record badge background ── */
-  --badge-bg: #f5f0ff;
+  /* ── Badge ── */
+  --badge-bg:     #f5f0ff;
   --badge-border: 1px solid var(--theme-color-light);
-  --badge-radius: 6px;
 
-  /* ── Date badge ── */
-  --date-badge-bg: #f5f0ff;
-  --date-badge-radius: 8px;
+  /* ── Date ── */
   --date-month-color: darkred;
-  --date-year-color: #999;
+  --date-year-color:  #999;
+  --kcal-label-color: #aaa;
 
-  /* ── Meal pill colors ── */
-  --meal-breakfast-bg: #dbeafe;
-  --meal-breakfast-text: #1e40af;
-  --meal-lunch-bg: #dcfce7;
-  --meal-lunch-text: #166534;
-  --meal-dinner-bg: #ede9fe;
-  --meal-dinner-text: #5b21b6;
-  --meal-snack-bg: #fef3c7;
-  --meal-snack-text: #92400e;
+  /* ── Meal pills ── */
+  --meal-breakfast-bg:   #dbeafe;  --meal-breakfast-text: #1e40af;
+  --meal-lunch-bg:       #dcfce7;  --meal-lunch-text:     #166534;
+  --meal-dinner-bg:      #ede9fe;  --meal-dinner-text:    #5b21b6;
+  --meal-snack-bg:       #fef3c7;  --meal-snack-text:     #92400e;
 
-  /* ── Border radius scale ── */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 14px;
+  /* ── Radius scale ── */
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   14px;
   --radius-pill: 20px;
 
-  /* ── Border shorthand ── */
-  --border-light: 1px solid var(--theme-color-light);
+  /* ── Borders ── */
+  --border-light:  1px solid var(--theme-color-light);
   --border-normal: 1px solid var(--theme-color-normal);
 
-  /* ── Warning styles ── */
-  --warning-bg: #fffbeb;
+  /* ── Warning ── */
+  --warning-bg:   #fffbeb;
   --warning-text: #92400e;
 
   /* ── Font sizes ── */
-  --font-xs: 11px;
-  --font-sm: 12px;
-  --font-md: 14px;
+  --font-xs:   11px;
+  --font-sm:   12px;
+  --font-md:   14px;
   --font-base: 16px;
-  --font-lg: 18px;
+  --font-lg:   18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 a {
@@ -80,23 +75,17 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
-a:hover {
-  color: #535bf2;
-}
+a:hover { color: #535bf2; }
 
 body {
-  position: absolute;
-  top: 0;
-  bottom: 0;
   margin: 0;
-  left: 0;
-  right: 0;
+  position: absolute;
+  inset: 0;
 }
 
+/* FIX: removed max-width / margin:auto that clipped the sidebar layout */
 #root {
-  max-width: 1024px;
-  margin: auto;
-  background-color: white;
+  height: 100%;
 }
 
 h1 {
@@ -108,7 +97,6 @@ h1 {
 h1::after {
   content: "";
   display: flex;
-  flex-direction: column;
   width: 100%;
   border: 2px solid var(--theme-color-dark);
 }

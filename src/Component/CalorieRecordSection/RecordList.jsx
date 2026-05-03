@@ -24,15 +24,12 @@ function RecordList({ records, totalCalories }) {
       </thead>
       <tbody>
         {records.map((record) => (
-          
           <CalorieRecord key={record.id} recordId={record.id} {...record} />
         ))}
       </tbody>
       <tfoot>
         <tr className={styles["total-row"]}>
-          <td colSpan={3} className={styles["total-label"]}>
-            Total for the day
-          </td>
+          <td colSpan={3} className={styles["total-label"]}>Total for the day</td>
           <td className={styles["total-value"]}>
             <span className={styles["total-badge"]}>
               {totalCalories}

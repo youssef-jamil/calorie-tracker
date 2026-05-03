@@ -1,6 +1,7 @@
 .row {
   border-bottom: var(--border-light);
   transition: background 0.15s;
+  cursor: pointer;
 }
 .row:last-child {
   border-bottom: none;
@@ -9,12 +10,20 @@
   background-color: var(--badge-bg);
 }
 
+/* Sport rows: subtle green left-border accent */
+.row-sport {
+  background-color: #f0fdf4;
+  border-left: 3px solid #22c55e;
+}
+.row-sport:hover {
+  background-color: #dcfce7;
+}
+
 .date-cell {
   display: flex;
   align-items: center;
   padding: 14px 16px;
 }
-
 .date-badge {
   display: flex;
   flex-direction: column;
@@ -26,7 +35,6 @@
   background-color: var(--badge-bg);
   border: var(--badge-border);
 }
-
 .month {
   font-size: 9px;
   font-weight: 700;
@@ -50,6 +58,17 @@
   vertical-align: middle;
 }
 
+/* Content cell inline layout */
+.content-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.sport-icon {
+  font-size: 14px;
+}
+
+/* Meal pills */
 .meal-pill {
   display: inline-flex;
   align-items: center;
@@ -58,12 +77,24 @@
   font-size: var(--font-sm);
   font-weight: 500;
 }
+.meal-breakfast {
+  background: var(--meal-breakfast-bg);
+  color: var(--meal-breakfast-text);
+}
+.meal-lunch {
+  background: var(--meal-lunch-bg);
+  color: var(--meal-lunch-text);
+}
+.meal-dinner {
+  background: var(--meal-dinner-bg);
+  color: var(--meal-dinner-text);
+}
+.meal-snack {
+  background: var(--meal-snack-bg);
+  color: var(--meal-snack-text);
+}
 
-.meal-breakfast { background: var(--meal-breakfast-bg); color: var(--meal-breakfast-text); }
-.meal-lunch     { background: var(--meal-lunch-bg);     color: var(--meal-lunch-text); }
-.meal-dinner    { background: var(--meal-dinner-bg);    color: var(--meal-dinner-text); }
-.meal-snack     { background: var(--meal-snack-bg);     color: var(--meal-snack-text); }
-
+/* Regular calorie badge */
 .cal-badge {
   display: inline-flex;
   align-items: baseline;
@@ -79,12 +110,43 @@
   min-width: 60px;
   justify-content: center;
 }
-
 .kcal-label {
   font-size: 10px;
   color: var(--kcal-label-color);
   margin-left: 2px;
 }
+
+/* Burned / sport calorie badge — green */
+.cal-badge-burned {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: monospace;
+  font-size: var(--font-md);
+  font-weight: 600;
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  min-width: 60px;
+  justify-content: center;
+  white-space: nowrap;
+}
+.burned-arrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+  margin-right: 1px;
+}
+.kcal-label-burned {
+  font-size: 10px;
+  color: #4ade80;
+  margin-left: 2px;
+  font-family: inherit;
+  font-weight: 500;
+}
+
 .invalid {
   font-size: var(--font-sm);
   color: darkred;

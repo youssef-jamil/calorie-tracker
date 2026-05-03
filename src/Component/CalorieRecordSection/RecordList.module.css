@@ -5,7 +5,6 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
-
 .th {
   font-size: var(--font-xs);
   font-weight: 600;
@@ -17,11 +16,7 @@
   border-bottom: var(--border-light);
   background-color: var(--badge-bg);
 }
-
-.th-center {
-  text-align: center;
-}
-
+.th-center { text-align: center; }
 .total-row {
   background-color: var(--badge-bg);
   border-top: var(--border-light);
@@ -33,11 +28,7 @@
   text-align: right;
   padding: 10px 16px;
 }
-.total-value {
-  text-align: center;
-  padding: 10px 16px;
-}
-
+.total-value { text-align: center; padding: 10px 16px; }
 .total-badge {
   display: inline-flex;
   align-items: baseline;
@@ -52,13 +43,7 @@
   padding: 4px 12px;
   justify-content: center;
 }
-
-.kcal-label {
-  font-size: 10px;
-  color: var(--kcal-label-color);
-  margin-left: 2px;
-}
-
+.kcal-label { font-size: 10px; color: var(--kcal-label-color); margin-left: 2px; }
 .empty {
   font-size: 1.4rem;
   font-weight: 500;

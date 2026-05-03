@@ -1,46 +1,46 @@
-import { use } from "react";
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./ErrorPage.module.css";
 
-const REDIRECT_COUNTER = 10;
-const INTERVAL_TIME = 1000;
-const ERROR_MESSAGE = "404 Not Found";
-const ERROR_DESCRIPTION = "Something went wrong...";
-const HOME_LINK = "/";
+const REDIRECT_SECONDS = 10;
+const HOME = "/";
+
 function ErrorPage() {
-  const [counter, setCounter] = useState(REDIRECT_COUNTER);
-
-  const handleInterval = useRef();
+  const [counter, setCounter] = useState(REDIRECT_SECONDS);
+  const intervalRef = useRef(null);
   const navigate = useNavigate();
 
-  // to redirect to the homepage after 10 seconds
-
   useEffect(() => {
-    if (counter === 0) {
-      clearInterval(handleInterval.current);
-      navigate(HOME_LINK);
-    }
-  }, [counter]);
-
-  useEffect(() => {
-    handleInterval.current = setInterval(() => {
-      setCounter((prev) => prev - 1);
-    }, INTERVAL_TIME);
-
-    // to clear the interval when the component unmounts
-    return () => clearInterval(handleInterval.current);
+    intervalRef.current = setInterval(
+      () => setCounter((prev) => prev - 1),
+      1000
+    );
+    return () => clearInterval(intervalRef.current);
   }, []);
 
+  useEffect(() => {
+    if (counter <= 0) {
+      clearInterval(intervalRef.current);
+      navigate(HOME);
+    }
+  }, [counter, navigate]);
+
   return (
-    <>
-      <h1>{ERROR_MESSAGE}</h1>
-      <p>{ERROR_DESCRIPTION}</p>
-      <p>You will be redirected to the homepage in {counter} seconds.</p>
-      <p>
-        Or Click <Link to={HOME_LINK}>here</Link> to go back to the homepage.
+    <div className={styles.page}>
+      <div className={styles.code}>404</div>
+      <h1 className={styles.title}>Page not found</h1>
+      <p className={styles.description}>
+        The page you're looking for doesn't exist or has been moved.
       </p>
-    </>
+      <p className={styles.countdown}>
+        Redirecting to home in{" "}
+        <span className={styles.counter}>{counter}</span>s…
+      </p>
+      <Link to={HOME} className={styles.homeLink}>
+        Take me home now →
+      </Link>
+    </div>
   );
 }
+
 export default ErrorPage;

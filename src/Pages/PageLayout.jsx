@@ -6,9 +6,9 @@ export function PageLayout() {
   return (
     <div className={styles.layout}>
       <SideNav />
-      <div className={styles["content-wrapper"]}>
+      <main className={styles.main}>
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 }

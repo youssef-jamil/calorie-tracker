@@ -27,17 +27,16 @@ function CalorieRecord({ meal, content, calories, date, recordId }) {
   const month = MONTHS[date.getUTCMonth()];
   const day = date.getUTCDate();
   const year = date.getUTCFullYear();
-  const isValid = calories;
+  const isValid = typeof calories === "number" && !isNaN(calories);
+  const isBurned = isValid && calories < 0;
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    // Navigate to the detail page with the record ID (you can use a unique identifier for each record)
-    navigate(`/track/${recordId}`);
-  };
-
   return (
-    <tr className={styles.row} onClick={handleClick}>
+    <tr
+      className={`${styles.row} ${isBurned ? styles["row-sport"] : ""}`}
+      onClick={() => navigate(`/track/${recordId}`)}
+    >
       <td>
         <div className={styles["date-cell"]}>
           <div className={styles["date-badge"]}>
@@ -54,17 +53,28 @@ function CalorieRecord({ meal, content, calories, date, recordId }) {
       </td>
       <td className={styles["center-cell"]}>
         {isValid ? (
-          content
+          <span className={styles["content-cell"]}>
+            {isBurned && <span className={styles["sport-icon"]}>🔥</span>}
+            {content}
+          </span>
         ) : (
           <span className={styles.invalid}>Invalid entry</span>
         )}
       </td>
       <td className={styles["center-cell"]}>
         {isValid ? (
-          <span className={styles["cal-badge"]}>
-            {calories}
-            <span className={styles["kcal-label"]}>kcal</span>
-          </span>
+          isBurned ? (
+            <span className={styles["cal-badge-burned"]}>
+              <span className={styles["burned-arrow"]}>↓</span>
+              {Math.abs(calories)}
+              <span className={styles["kcal-label-burned"]}>kcal burned</span>
+            </span>
+          ) : (
+            <span className={styles["cal-badge"]}>
+              {calories}
+              <span className={styles["kcal-label"]}>kcal</span>
+            </span>
+          )
         ) : (
           <span className={styles["cal-badge"]}>—</span>
         )}

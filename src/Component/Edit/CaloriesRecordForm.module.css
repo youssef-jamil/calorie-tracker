@@ -5,13 +5,11 @@
   border: var(--border-normal);
   display: grid;
 }
-
 .form label {
   color: var(--theme-color-dark);
   margin-right: 30px;
   margin-bottom: 10px;
 }
-
 .form-input {
   background-color: var(--theme-background-light);
   color: var(--theme-color-normal);
@@ -25,13 +23,11 @@
   display: block;
   box-sizing: border-box;
 }
-
 .error {
   background-color: var(--theme-background-light);
   color: maroon;
   border: 2px solid maroon;
 }
-
 .warning {
   display: block;
   grid-column: 1 / -1;
@@ -39,23 +35,18 @@
   background-color: var(--theme-color-light);
   color: var(--warning-text);
   border: var(--border-normal);
-  font-size: var(--radius-pill);
-  padding: 5px;
+  font-size: var(--font-sm);
+  padding: 8px 12px;
   border-radius: var(--radius-pill);
   text-align: center;
   font-weight: 500;
+  margin-bottom: 12px;
 }
-
 .warning .number {
   font-weight: 700;
   color: var(--theme-color-dark);
 }
-
-.footer {
-  display: flex;
-  justify-content: space-evenly;
-}
-
+.footer { display: flex; justify-content: space-evenly; }
 .footer button {
   display: inline-flex;
   align-items: center;
@@ -71,37 +62,22 @@
   width: 160px;
   transition: background 0.15s, transform 0.1s;
 }
-
-.footer button:hover {
-  background-color: var(--btn-primary-hover);
-}
-.footer button:active {
-  transform: scale(0.97);
-}
-
+.footer button:hover  { background-color: var(--btn-primary-hover); }
+.footer button:active { transform: scale(0.97); }
 .footer button.secondary {
   background-color: transparent;
   border: var(--badge-border);
   color: var(--btn-primary-bg);
 }
-
-.footer button.secondary:hover {
-  /* FIX #10: was referencing --btn-disabled-bg which didn't exist; now it does */
-  background-color: var(--btn-disabled-bg);
-}
-
+.footer button.secondary:hover { background-color: var(--btn-disabled-bg); }
 .footer button:disabled {
-  /* FIX #10: --btn-disabled-bg / --btn-disabled-text now defined in index.css */
   background-color: var(--btn-disabled-bg);
   color: var(--btn-disabled-text);
   border: 1px solid var(--btn-disabled-border);
   cursor: not-allowed;
   transform: none;
 }
-
-.footer button:disabled:hover {
-  background-color: var(--btn-disabled-bg);
-}
+.footer button:disabled:hover { background-color: var(--btn-disabled-bg); }
 
 @media (min-width: 768px) {
   .form {
